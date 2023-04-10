@@ -14,7 +14,7 @@ class shoppingControl{
     newProduct(ID){
         const product = this.shopList.find ( product => product.ID === ID);
         if(product){
-            inList.Cantidad++;
+            product.Cantidad++;
             localStorage.setItem("shopList", JSON.stringify(this.shopList))
         }else{
             this.shopList.push(ID)
@@ -109,14 +109,3 @@ class shoppingControl{
     }
 
 }
-
-const shopC = new shoppingControl()
-shopC.getList()
-const container_cart = document.getElementById("container_cart")
-const cleanCart = document.getElementById("cleanCart");
-const precioTotal = document.querySelector("total");
-shopC.show(container_cart)
-
-cleanCart.addEventListener("click", () => {
-    shopC.cleaner()
-})
