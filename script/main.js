@@ -66,7 +66,6 @@ const shopC = new shoppingControl()
 productC.getList(shopC)
 shopC.getList()
 
-const container_cart = document.getElementById("container_cart")
 const cleanCart = document.getElementById("cleanCart");
 const precioTotal = document.querySelector("total");
 productC.show(main_container)

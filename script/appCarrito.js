@@ -1,6 +1,7 @@
 class shoppingControl{
     constructor(){
         this.shopList = []
+        this.container_cart = document.getElementById("container_cart")
     }
 
     getList(){
@@ -12,23 +13,22 @@ class shoppingControl{
     }
 
     newProduct(ID){
-        const product = this.shopList.find ( product => product.ID === ID);
-        if(product){
-            product.Cantidad++;
-            localStorage.setItem("shopList", JSON.stringify(this.shopList))
+        let producto = this.shopList.some ( product => product.ID === ID);
+        if(producto){
+            const product = this.shopList.find ( product => product.ID === ID);
+            product.Cantidad +=1
         }else{
             this.shopList.push(ID)
-            localStorage.setItem("shopList", JSON.stringify(this.shopList))
         }
-
-        this.show(container_cart);
+        localStorage.setItem("shopList", JSON.stringify(this.shopList))
+        this.show();
         
     }
 
-    show(container_cart){
-        container_cart.innerHTML = ""
+    show(){
+        this.container_cart.innerHTML = ""
         this.shopList.forEach(producto =>{
-            container_cart.innerHTML += `
+            this.container_cart.innerHTML += `
             <div class="card mb-3" >
                 <div class="row g-0">
                     <div class="col-md-4">
@@ -66,7 +66,7 @@ class shoppingControl{
             cantidad.innerHTML = i
             localStorage.setItem("shopList", JSON.stringify(this.shopList))
         }
-        this.show(container_cart)
+        this.show()
     } 
 
     decrease(ID){
@@ -81,7 +81,7 @@ class shoppingControl{
                 localStorage.setItem("shopList", JSON.stringify(this.shopList))
             }
         }
-        this.show(container_cart)
+        this.show()
     }
 
     remove(ID){
@@ -89,7 +89,7 @@ class shoppingControl{
         const index = this.shopList.indexOf(product);
         this.shopList.splice(index,1);
         localStorage.setItem("shopList", JSON.stringify(this.shopList));
-        this.show(container_cart)
+        this.show()
         this.total();
     }
 
