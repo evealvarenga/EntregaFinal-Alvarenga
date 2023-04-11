@@ -67,10 +67,16 @@ productC.getList(shopC)
 shopC.getList()
 
 const cleanCart = document.getElementById("cleanCart");
+const finalizarCompra = document.getElementById("finalizarCompra");
 const precioTotal = document.querySelector("total");
 productC.show(main_container)
 shopC.show(container_cart)
 
+
+
+finalizarCompra.addEventListener("click", () =>{
+    shopC.finish()
+})
 
 
 cleanCart.addEventListener("click", () => {

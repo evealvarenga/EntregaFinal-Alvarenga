@@ -100,6 +100,33 @@ class shoppingControl{
         this.total();
     }
 
+    finish(){
+        if(this.shopList.length === 0){
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'No hay nada en el carrito!',
+              })
+        }else{
+            Swal.fire({
+                title: 'Querés seguir comprando?',
+                showDenyButton: true,
+                showCancelButton: true,
+                confirmButtonText: 'Finalizar compra',
+                denyButtonText: `Seguir comprando`,
+              }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                  Swal.fire('Compra realizada!', '', 'success')
+                  this.cleaner()
+                } else if (result.isDenied) {
+                  Swal.fire('Podés seguir comprando', '', 'info')
+                }
+              })
+        }
+        
+    }
+
     total(){
         let total = 0;
         this.shopList.forEach((product) => {
